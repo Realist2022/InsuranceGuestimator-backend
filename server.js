@@ -2,25 +2,15 @@ require('dotenv').config(); // Load environment variables from .env
 const express = require('express');
 const multer = require('multer'); // For handling file uploads
 const cors = require('cors'); // To allow cross-origin requests from frontend
-// const { PredictionApi } = require('@azure/cognitiveservices-customvision-prediction'); // Correct name
-// const { PredictionAPIClient } = require('@azure/cognitiveservices-customvision-prediction');
-// or if you are using the training client
-// const { TrainingAPIClient } = require('@azure/cognitiveservices-customvision-training');
-// const util = require('util');
-// const fs = require('fs');
-// const TrainingApi = require("@azure/cognitiveservices-customvision-training");
 const msRest = require('@azure/ms-rest-js'); // This statement imports the whole toolbox from msRest
 const { PredictionAPIClient } = require('@azure/cognitiveservices-customvision-prediction'); // This imports it directly so I don't have to use the dot notation
-// const msRest = require("@azure/ms-rest-js");
-
-
-
-const app = express();
-const port = process.env.PORT || 4000; 
 
 // MIDDLEWARES
+const app = express();
 app.use(cors()); 
 app.use(express.json()); 
+
+const port = process.env.PORT || 4000; 
 
 // MULTER 
 const storage = multer.memoryStorage();
@@ -39,14 +29,14 @@ if (!predictionKey || !predictionEndpoint || !projectId || !iterationId) {
 }
 
 // INITIALIZE msRest toolbox and PredictionAPIClient.
-const credentials = new msRest.ApiKeyCredentials({ inHeader: { 'Prediction-key': predictionKey } });
-const predictor = new PredictionAPIClient(credentials, predictionEndpoint);
+const credentials = new msRest.ApiKeyCredentials({ inHeader: { 'Prediction-key': predictionKey } }); // This is dot notation
+const predictor = new PredictionAPIClient(credentials, predictionEndpoint); // This is the direct import
 
 // ENDPOINT to handle form submission and file upload
 app.post('/api/upload', upload.single('vehicleImage'), async (req, res) => {
     try {
-        // Access form data from req.body
-        const { name, email, number, vehicleType } = req.body;
+        // --- FRONTEND BUSINESS LOGIC ---
+        const { name, email, number, vehicleType } = req.body; // Access form data from req.body
         const imageFile = req.file;
 
         if (!imageFile) {
@@ -63,7 +53,7 @@ app.post('/api/upload', upload.single('vehicleImage'), async (req, res) => {
 
         // --- BACKEND BUSINESS LOGIC ---
 
-        let predictionSummary = 'No clear prediction'; // Default human-readable summary
+        let predictionSummary = 'No clear prediction'; // Variable to store the prediction summary
         let topTagName = null; // Will store the tag name if prediction is confident
 
         if (results && results.predictions && results.predictions.length > 0) {
@@ -79,12 +69,11 @@ app.post('/api/upload', upload.single('vehicleImage'), async (req, res) => {
                 topTagName = topPrediction.tagName; // Store the tag name
                 predictionSummary = topTagName; // Set summary to just the tag name
 
-                // --- Optional: Add more logic here based on topTagName ---
                 console.log(`Confident prediction: ${topTagName} (${(topTagProbability * 100).toFixed(1)}%)`);
 
             } else {
                 // Handle uncertain predictions
-                predictionSummary = 'Uncertain prediction'; // Simple uncertain message
+                predictionSummary = 'Uncertain prediction'; // uncertain message
                 console.log(`Prediction confidence below threshold (top tag: ${topPrediction.tagName}, confidence: ${(topTagProbability * 100).toFixed(1)}%)`);
                 
             }
@@ -94,8 +83,7 @@ app.post('/api/upload', upload.single('vehicleImage'), async (req, res) => {
         }
 
         // --- END BACKEND BUSINESS LOGIC ---
-
-
+        
         // Send a response back to the frontend
         res.status(200).json({
             message: 'Form and image received, Custom Vision processed.',

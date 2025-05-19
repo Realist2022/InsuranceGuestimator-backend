@@ -4,19 +4,13 @@
 
 This backend connects to my azure portal with custom vision.. I have trained the model to recognize the different car model brands between a sedan, suv and truck. I have also trained it with extra tags of write off, sedan write off, suv write off and truck write off. The main target for this project was connecting azure to my app, Training models with custom vision, recognizing different vehicle models for price on premiums or excess and insurance claims..
 
-## Getting started
+# Getting started
 
-Main packages installed:
+## Install packages
 
 1. npm install -y
-2. dependencies- npm install axios cors dotenv express multer
+2. dependencies: npm install express cors dotenv axios multer 
 3. Packages to install from custom vision: npm install-@azure/cognitiveservices-customvision-prediction & @azure/cognitiveservices-customvision-training(didn't use)
-
-### Install packages
-
-1. npm init -y
-2. npm install express cors dotenv axios multer 
-3. npm insatll @azure/cognitiveservices-customvision-training, @azure/cognitiveservices-customvision-prediction, @azure/ms-rest-js
 
 ## Git Installation
 1. Git init.

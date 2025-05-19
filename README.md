@@ -41,4 +41,4 @@ Main packages installed:
 
 ## Git clone
 
-git clone (https://github.com/Realist2022/Business-Association-Mission-0.git).
+git clone: https://github.com/Realist2022/InsuranceGuestimator-backend.git

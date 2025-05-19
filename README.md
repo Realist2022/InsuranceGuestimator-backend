@@ -6,6 +6,12 @@ This backend connects to my azure portal with custom vision.. I have trained the
 
 ## Getting started
 
+Main packages installed:
+
+1. npm install -y
+2. dependencies- npm install axios cors dotenv express multer
+3. Packages to install from custom vision: npm install-@azure/cognitiveservices-customvision-prediction & @azure/cognitiveservices-customvision-training(didn't use)
+
 ### Install packages
 
 1. npm init -y
@@ -13,17 +19,26 @@ This backend connects to my azure portal with custom vision.. I have trained the
 3. npm insatll @azure/cognitiveservices-customvision-training, @azure/cognitiveservices-customvision-prediction, @azure/ms-rest-js
 
 ## Git Installation
-Git init.
-git clone (https://github.com/Realist2022/Business-Association-Mission-0.git).
+1. Git init.
+2. create repo on gitHub
+3. git add remote origin git@ithub.........
+4. git branch -M main
+5. git push -u origin main
+6. git checkout -b sonny
+7. git pull origin main
 
 ## Git work Flow
-git checkout {branch}
-git add .
-git commit -m 'message'
-git push
-open pull request.
-merge code to main
-git checkout main
-git pull
-git checkout {my branch}
-git merge main
+1. git checkout {branch}
+2. git add .
+3. git commit -m 'message'
+4. git push
+5. open pull request.
+6. merge code to main
+7. git checkout main
+8. git pull
+9. git checkout {my branch}
+10. git merge main
+
+## Git clone
+
+git clone (https://github.com/Realist2022/Business-Association-Mission-0.git).

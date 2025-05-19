@@ -1,1 +1,58 @@
+# Ignore Node.js dependencies
+# Ignore node_modules folder in any directory
+node_modules/
+
+# Ignore backend environment variables
+/backend/.env
+
+# Ignore frontend environment variables (if you add one later)
+/frontend/.env
+
+# Ignore build outputs
+/frontend/build/ # For Create React App builds
+/frontend/dist/  # For Vite builds (if you switch or use Vite)
+/backend/dist/   # If you add a build step for your backend later
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Directories for compiled code (less common in pure JS backend, but good practice)
+/backend/lib/
+/backend/dist/
+
+# Optional: nyc instrumentation and coverage
+/.nyc_output/
+/coverage/
+
+# Optional: dotenv env file (if you accidentally create one in the root)
 .env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# OS generated files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Editor/IDE specific files (add others as needed)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Specific frontend ignores that might be in frontend/.gitignore
+# If you keep the frontend/.gitignore, you might not need these here,
+# but adding them doesn't hurt.
+# /frontend/package-lock.json # Usually keep package-lock, but can ignore
+# /frontend/yarn.lock         # Or yarn.lock
+# /frontend/.env.local        # Specific local env files

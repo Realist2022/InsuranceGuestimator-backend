@@ -33,6 +33,11 @@ This backend connects to my azure portal with custom vision.. I have trained the
 9. git checkout {my branch}
 10. git merge main
 
+## Handy links/ Resources 
+1. Multer: https://youtu.be/EVOFt8Its6I?si=eI_5dwftFngjDNqr
+2. DataSets for downloading: https://youtu.be/Mx8Ax1n7UjA?si=bVbMm07zqkdNB9uB
+3. custom vision Docs: https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/
+
 ## Git clone
 
 git clone: https://github.com/Realist2022/InsuranceGuestimator-backend.git

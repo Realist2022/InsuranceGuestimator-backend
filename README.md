@@ -2,7 +2,7 @@
 
 ## Brief Description 
 
-This backend connects to my azure portal with custom vision.. I have trained the model to recognize the different car model brands between a sedan, suv and truck. I have also trained it with extra tags of write off, sedan write off, suv write off and truck write off. The main target for this project was connecting azure to my app, Training models with custom vision, recognizing different vehicle models for price on premiums or excess and insurance claims..
+This backend connects to my azure portal with custom vision.. I have trained the model to recognize the different vehicle types between a sedan, suv and truck. I have also trained it with extra tags of write off, sedan write off, suv write off and truck write off. The main target for this project was connecting azure to my app, Training models with custom vision, recognizing different vehicle models for price on premiums or excess and insurance claims..
 
 # Getting started
 

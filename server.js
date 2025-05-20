@@ -50,18 +50,12 @@ app.post("/api/upload", upload.single("vehicleImage"), async (req, res) => {
       return res.status(400).json({ error: "No image file uploaded." });
     }
 
-    // console.log("Received form data:", { name, email, number, vehicleType });
-    // console.log("Received image:", imageFile.originalname);
-
     // --- SENDING IMAGE TO AZURE ---
-    // console.log("Sending image to Azure Custom Vision...");
     const results = await predictor.classifyImage(
       projectId,
       iterationId,
       imageFile.buffer
     ); // Used buffer to send the image data to Azure
-
-    // console.log("Azure Custom Vision results:", results); // Still log full results on backend for debugging
 
     // --- BACKEND BUSINESS LOGIC ---
     let predictionSummary = "No clear prediction"; // Variable to store the prediction summary
@@ -81,12 +75,6 @@ app.post("/api/upload", upload.single("vehicleImage"), async (req, res) => {
       if (topTagProbability > 0.4) { // If prediction is confident @ 40%
         topTagName = topPrediction.tagName; // Store the tag name
         predictionSummary = topTagName; // Set summary to just the tag name
-
-        // console.log(
-        //   `Confident prediction: ${topTagName} (${(
-        //     topTagProbability * 100
-        //   ).toFixed(1)}%)`
-        // );
 
         // Conditionally determine base price based on topTagName over 40%
         const predictionTagLower = topTagName.toLowerCase(); // Convert to lower case for comparison
@@ -111,11 +99,6 @@ app.post("/api/upload", upload.single("vehicleImage"), async (req, res) => {
         // HANDLE UNCERTAIN PREDICTIONS UNDER 40%
         predictionSummary = "Uncertain prediction";
         basePrice = "Prediction confidence too low to determine base price.";
-        // console.log(
-        //   `Prediction confidence below threshold (top tag: ${
-        //     topPrediction.tagName
-        //   }, confidence: ${(topTagProbability * 100).toFixed(1)}%)`
-        // );
       }
     } else {
       console.warn("Custom Vision returned no predictions.");
@@ -125,13 +108,13 @@ app.post("/api/upload", upload.single("vehicleImage"), async (req, res) => {
 
     // --- END BACKEND BUSINESS LOGIC ---
 
-    // Send a response back to the frontend
+    // RESPONSE BACK TO FRONTEND
     res.status(200).json({
       message: "Form and image received, Custom Vision processed.",
       formData: { name, email, number, vehicleType },
       predictionSummary: predictionSummary,
-      topTagName: topTagName, // Send the raw tag name (optional, but can be useful)
-      basePrice: basePrice, // Now 'basePrice' contains the formatted string
+      topTagName: topTagName, 
+      basePrice: basePrice, 
     });
   } catch (error) {
     console.error("Error processing upload:", error);
@@ -149,7 +132,7 @@ app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
 
-// Start server
+// START SERVER
 app.listen(port, () => {
   console.log(`Backend server listening at http://localhost:${port}`);
 });
